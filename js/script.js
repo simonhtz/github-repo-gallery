@@ -45,6 +45,9 @@ const getRepos = async function() {
 
 // Display repo list
 const displayRepos = function (repos) {
+  // Show Search box:
+  filterInput.classList.remove("hide");
+  // Display repos:
   for(const repo of repos) {
     const listItem = document.createElement("li");
     listItem.classList.add("repo");
@@ -101,4 +104,21 @@ viewRepos.addEventListener("click", function() {
   reposInfo.classList.remove("hide");
   displayRepoData.classList.add("hide");
   viewRepos.classList.add("hide");
+});
+
+// Input event for search element
+filterInput.addEventListener("input", function(e) {
+  searchText = e.target.value;
+  const repos = document.querySelectorAll(".repo");
+  const loCa = searchText.toLowerCase();
+  
+  for (const repo of repos) {
+    const repoLoCa = repo.innerText.toLowerCase();
+    if (repoLoCa.includes(loCa)) {
+      repo.classList.remove("hide");
+    }
+    else {
+      repo.classList.add("hide");
+    }
+  }
 });
