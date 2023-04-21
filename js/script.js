@@ -3,9 +3,13 @@ const overview = document.querySelector(".overview");
 const username = "simonhtz";
 const repoList = document.querySelector(".repo-list");
 // Here appears all the repo info:
-const reposInfo = document.querySelector(".repos")
+const reposInfo = document.querySelector(".repos");
 // Here appears the individual repo data:
-const displayRepoData = document.querySelector(".repo-data")
+const displayRepoData = document.querySelector(".repo-data");
+// Back to repos button:
+const viewRepos = document.querySelector(".view-repos");
+// Input field "Search by name":
+const filterInput = document.querySelector(".filter-repos");
 
 // Fetching API from GitHub
 const getName = async function () {
@@ -81,6 +85,7 @@ const displayRepoInfo = function (repoInfo, languages) {
   displayRepoData.innerHTML = "";
   displayRepoData.classList.remove("hide");
   reposInfo.classList.add("hide");
+  viewRepos.classList.remove("hide");
   // Add div
   const div = document.createElement("div");
   div.innerHTML = `<h3>Name: ${repoInfo.name}</h3>
@@ -90,3 +95,10 @@ const displayRepoInfo = function (repoInfo, languages) {
   <a class="visit" href="${repoInfo.html_url}" target="_blank" rel="noreferrer noopener">View Repo on GitHub!</a>`;
   displayRepoData.append(div);
 };
+
+// Click event for back button
+viewRepos.addEventListener("click", function() {
+  reposInfo.classList.remove("hide");
+  displayRepoData.classList.add("hide");
+  viewRepos.classList.add("hide");
+});
