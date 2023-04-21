@@ -18,7 +18,7 @@ getName();
 // Fetch & display user info
 const displayInfo = function (data) {
     const div = document.createElement("div");
-    div.classList.add = ("user-info");
+    div.classList.add("user-info");
     div.innerHTML = `<figure>
       <img alt="user avatar" src=${data.avatar_url} />
     </figure>
@@ -64,7 +64,7 @@ const getRepoInfo = async function (repoName) {
   console.log(repoInfo);
   // Fetch languages
   const fetchLanguages = await fetch (repoInfo.languages_url);
-  const languageData = fetchLanguages.json();
+  const languageData = await fetchLanguages.json();
 
   // Languages list
   const languages = [];
